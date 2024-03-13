@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 
 def read_json_file(file_path):
@@ -25,15 +26,19 @@ def analyze_data(data):
 
     # Statistische Zusammenfassung der Verbrauchswerte
     consumption_stats = df['consumption_kwh'].describe()
+    median = df['consumption_kwh'].median()
     print("\nStatistische Zusammenfassung der Verbrauchswerte:")
     print(consumption_stats)
+    print("\nMedian des Verbrauchswerts:", median)
 
     # Visualisierung des Stromverbrauchs über die Zeit
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='s')
     df.set_index('timestamp', inplace=True)
     df['consumption_kwh'].plot(figsize=(10, 6))
-    plt.title('Stromverbrauch über die Zeit')
+    plt.title('Stromverbrauch über die Zeit der Maschine 123')
     plt.xlabel('Zeit')
+    plt.gca().xaxis.set_major_formatter(
+        mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))
     plt.ylabel('Stromverbrauch (kWh)')
     plt.grid(True)
     plt.show()
