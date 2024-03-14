@@ -12,19 +12,18 @@ def read_json_file(file_path):
 
 # Datenanalyse
 def analyze_data(data):
-    # Umwandeln der Daten in ein Pandas DataFrame
     df = pd.DataFrame(data)
 
-    # Gesamtanzahl der Datensätze
+    # Gesamtanzahl Datensätze
     total_records = len(df)
     print("Gesamtanzahl der Datensätze:", total_records)
 
-    # Zeitrahmen der Datensätze
+    # Zeitrahmen
     start_time = pd.to_datetime(df['timestamp'].min(), unit='s')
     end_time = pd.to_datetime(df['timestamp'].max(), unit='s')
     print("Zeitrahmen der Datensätze:", start_time, "bis", end_time)
 
-    # Statistische Zusammenfassung der Verbrauchswerte
+    # Statistische Zusammenfassung
     consumption_stats = df['consumption_kwh'].describe()
     median = df['consumption_kwh'].median()
     print("\nStatistische Zusammenfassung der Verbrauchswerte:")
