@@ -42,8 +42,10 @@ def analyze_data(data):
     plt.grid(True)
     plt.show()
 
+    return df
+
 
 if __name__ == "__main__":
     json_file_path = "data.json"
     json_data = read_json_file(json_file_path)
-    analyze_data(json_data)
+    df = analyze_data(json_data)
